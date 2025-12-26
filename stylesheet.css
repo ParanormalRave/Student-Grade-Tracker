@@ -1,0 +1,385 @@
+:root {
+    --backgroundColor :#0e0e10;
+    --fontColor : #eaeaea;
+    --buttonColor : #00bfff;
+    --divColor : #1a1c20;
+    ---fontColor2: #9ca3af;
+    --border: #2c2f33;
+}
+
+* {
+    padding: 0;
+    margin: 0;
+    scroll-behavior: smooth;
+    box-sizing: border-box;
+}
+
+body{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1rem;
+    overflow: hidden;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    background-color: var(--backgroundColor);
+    color: var(--fontColor);
+    flex-direction: column;
+    padding: 1rem;
+}
+
+.inputs{
+    background-color: var(--divColor);
+    color: var(---fontColor2);
+    padding: 2rem;
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    filter: drop-shadow(0px 2px 4px #00bfff54);
+    max-width: 100vw;
+    max-height: 95dvh;
+    overflow: hidden;
+    overflow-y: scroll;
+}
+
+.inputs::-webkit-scrollbar{
+    display: none;
+}
+
+.pageslide{
+    opacity: 0;
+}
+.animatepageslide{
+    animation: animatehome 0.5s ease-in forwards 0.5s;
+}
+
+@keyframes animatehome {
+    0%{opacity: 0.5; transform: scale(0.9);}
+    100%{opacity: 1; transform: scale(1);}
+}
+
+h1 {
+    font-size: 5rem;
+    margin: 0;
+    margin-bottom: 0.5rem;
+    text-align: center;
+}
+
+h2{
+    font-size: 3rem;
+}
+
+label { 
+    font-size: 1.5rem;
+}
+
+input {
+    background-color: var(--divColor);
+    color: var(---fontColor2);
+    border: 1px solid var(--fontColor);
+    border-radius: 50px;
+    padding-left: 1rem;
+    width: 70vw;
+    transition: 0.3s ease;
+    outline: none;
+    font-size: 1.5rem;
+}
+
+.scoreSubject{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.inputbtngap{
+    display: flex;
+    gap: 2%;
+}
+
+input:focus {
+    box-shadow: 0 0 6px rgba(0, 191, 255, 0.2);
+    outline: none;
+    border-color: var(--border);
+}
+
+.add {
+    font-size: 2rem;
+    padding: 0.5rem 1rem;
+    background-color: var(--backgroundColor);
+    border-radius: 40%;
+    align-self: center;
+    border: 0;
+    width: fit-content;
+    color: var(--fontColor);
+    transition: 0.5s ease;
+    cursor: pointer;
+}
+
+.add:hover{
+    background-color: #2c2f33;
+    transform: scale(0.85);
+    color: var(--backgroundColor);
+}
+
+.lastbtn{
+    padding: 1rem;
+    border-radius: 20px;
+}
+
+#subjects, #scores{
+    width: 30vw;
+    padding: 1rem;
+}
+
+.capital{
+    text-transform: capitalize;
+}
+
+.outputContainer{
+    border: 0;
+    box-shadow: 0px 0px 4px rgba(0, 191, 255, 0.2);
+    border-radius: 20px;
+    padding: 1.5rem;
+    margin-top: 5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    gap: 1rem;
+    max-height: 50dvh;
+}
+
+.border{
+    border-bottom: 1px solid rgba(90, 88, 88, 0.795);
+}
+
+.StudentscoreOutput{
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.tableData{
+    border: 1px solid #0e0e10;
+}
+
+.opacityOfbtn{
+    opacity: 0;
+    visibility: hidden;
+    height: 0;
+    width: 0;
+    size: 0;
+    transition: all 0.5s linear;
+}
+
+.popupContainer{
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 10;
+    height: 100vh;
+    overflow: hidden;
+    width: 100vw;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    
+}
+
+#popup{
+    visibility: hidden;
+    height: 20vh;
+}
+
+.popup{
+    position: absolute;
+    z-index: 8;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 15rem;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    animation: scale 1s ease;
+    background-color: #000000;
+    gap: 1em;   
+}
+
+@keyframes scale {
+    0%{transform: scale(0.1) translate(-300%);}
+    100%{transform: scale(1) translate(-50%,-50%);}
+}
+
+.inputeditsubject{
+    display: flex;
+    justify-content: space-evenly;
+    align-self: flex-start;
+    gap: 1rem;
+}
+
+.inputeditsubject button{
+    border-radius: 5px;
+}
+
+.popremove{
+    text-align: right;
+    position: absolute;
+    right: 0%;
+    top: 0%;
+    color: white;
+    background-color: transparent;    
+    height: fit-content;
+    font-size: 2rem;
+    width: fit-content;
+    padding: 0.5rem 1rem;
+    border: 0;
+    transition: 1s ease;
+    font-weight: 100;
+    cursor: pointer;
+}
+
+.popremove:hover{
+    background-color: rgb(255, 0, 0);
+    color: var(--backgroundColor);
+}
+
+.popupcontent{
+    width: 10vw;
+    border: none;
+    background-color: transparent;
+    outline: none;
+    border-radius: 5px;
+    border-bottom: 1px solid var(--buttonColor);
+}
+
+.popupcontent:hover{
+    outline: none;
+    border: none;
+    border-bottom: 1px solid var(--divColor);
+}
+
+.editSubjects{
+    background-color: #0c101663;;
+    color: white;
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    width: fit-content;
+    align-self: center;
+    border: 0;
+    outline: none;
+    transition: 1s ease;
+}
+
+.editSubjects:hover{
+    cursor: pointer;
+    background-color: #757575;
+    color: black;
+}
+
+.editSubjects:active{
+    transform: scale(0.6);
+}
+
+#editsubsco{
+    visibility: hidden;
+    display: flex;
+    height: 40vh;
+    width: 70vw;
+    justify-content: center;
+    flex-direction: column;
+    padding: 1rem;
+}
+
+#editsubsco input{
+    width: 50vw;
+}
+
+.slideininfo{
+    opacity: 0;
+    padding: 1rem;
+    font-size: 1rem;
+    border-radius: 10px;
+    position: fixed;
+    right: 5%;
+    bottom: 5%;
+    display: flex;
+    background-color: var(--border);
+}
+
+.popslide{
+    animation: popslide 1.5s ease forwards;
+    opacity: 1;
+}
+
+@keyframes popslide {
+    0%{opacity: 0; transform: translate(100px);}
+    100%{opacity: 1; transform: translate(0);}
+}
+
+.popslideout {
+    animation: slideout 2s ease forwards;
+    opacity: 0;
+}
+
+@keyframes slideout {
+    0%{opacity: 1; transform: translate(0);}
+    100%{opacity: 0; transform: translate(100px);}
+}
+
+@media (max-width : 768px) {
+    body{
+        padding: 0.5rem ;
+        width: 100dvw;
+    }
+
+    h1{
+        font-size: 1.5rem;
+        margin: 0;
+        padding: 0;
+    }
+
+    h2{
+        font-size: 1rem;
+    }
+
+    .inputs{
+        margin-left: 1rem;
+        margin-right: 1rem;
+        padding: 2rem 0.5rem;
+        width: fit-content;
+        height: 95dvh;
+    }
+
+    label{
+        font-size: 0.7rem;
+    }
+
+    input{
+        font-size: 0.7rem;
+        padding: 0.5rem;  
+        height: fit-content;
+    }
+
+    .add{
+        font-size: 1rem;
+    }
+
+    .scoreSubject{
+        flex-direction: column;
+    }
+
+    #subjects, #scores{
+        padding: 0.5rem;
+        width: 60vw;
+    }
+
+    .outputContainer{
+        margin-top: 2rem;
+        padding: 1rem;
+    }
+
+    .slideininfo{
+        font-size: 0.7rem;
+    }
+}

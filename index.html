@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student grade tracker</title>
+    <link rel="stylesheet" href="./stylesheet.css">
+    <script defer src="./script.js"></script>
+</head>
+<body>
+    <div class="inputs">
+         <h1>Student Grade Tracker</h1>
+        <label for="name" class="pageslide">Input the Student's Fullname:</label>
+        <div class="inputbtngap pageslide">
+            <input type="text" class="pageslide" name="Student name" id="name" autocomplete="off">
+            <button class="add pageslide" id="addName" >+</button>
+        </div>
+
+        <label for="age">Input the Student's Age:</label>
+        <div class="inputbtngap pageslide">
+            <input type="number" class="pageslide" name="age" id="age">
+            <button class="add pageslide" id="addAge">+</button>
+        </div>
+                <h2>Scores and Subjects</h2>
+        <div class="scoreSubject">
+            <div class="section pageslide">
+                <label for="subjects">Enter Subjects</label>
+                <div>
+                    <input type="text" name="subject" id="subjects" autocomplete="off">
+                    <button class="add" id="addSubject">+</button>
+                </div>
+            </div>  
+
+            <div class="pageslide">
+                <label for="scores" >Enter scores per Subject</label>
+                <div>
+                    <input type="number" name="scores" id="scores">
+                    <button class="add "  id="addScores">+</button>
+                </div>
+            </div>
+        </div>
+        <button class="add lastbtn" id="average">Calculate Average</button>
+    </div>
+    <div class="slideininfo">
+        <p>You have successfully added <span class="sname"></span> to the list </p> 
+    </div>
+    <div id="popupContainer">
+        <div id="popup" >
+            <button id="popupremove">x</button>
+            <label for="popupcontent">Enter the number of the subject you wish to edit</label>
+            <div class="inputeditsubject">
+                <input type="number" name="editsubject" class="popupcontent">
+                <button class="add" id="existpopup">Enter</button>
+            </div>
+        </div>
+    </div>
+    <div id="editsubscocontainer">
+        <div id="editsubsco">
+            <button id="editsubremove">x</button>
+            <h3>Edit Your Subject and its Score</h3>
+            <div>
+                <label for="editsub">Edit Subject:</label>
+                <input type="text" name="editsub" id="editsub">
+            </div>
+            <div>
+                <label for="editsco">Edit Score:</label>
+                <input type="text" name="editsco" id="editsco">
+            </div>
+            <button class="enterEditSubjects editSubjects">Enter</button>
+        </div>
+    </div>
+</body>
+</html>
