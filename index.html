@@ -10,20 +10,26 @@
 <body>
     <div class="inputs">
          <h1>Student Grade Tracker</h1>
-        <label for="name" class="pageslide">Input the Student's Fullname:</label>
+
+        <div class="subContainer">
+            <label for="name" class="pageslide">Input the Student's Fullname:</label>
         <div class="inputbtngap pageslide">
-            <input type="text" class="pageslide" name="Student name" id="name" autocomplete="off">
+            <input type="text" class="pageslide" name="Student name" placeholder="John Doe " id="name" autocomplete="off">
             <button class="add pageslide" id="addName" >+</button>
         </div>
-
-        <label for="age">Input the Student's Age:</label>
-        <div class="inputbtngap pageslide">
-            <input type="number" class="pageslide" name="age" id="age">
-            <button class="add pageslide" id="addAge">+</button>
         </div>
+        
+        <div class="subContainer">
+          <label for="age" class="pageslide">Input the Student's Age:</label>
+        <div class="inputbtngap pageslide">
+            <input type="number" class="pageslide" name="age" id="age" placeholder="17">
+            <button class="add pageslide" id="addAge">+</button>
+        </div>  
+        </div>
+        
                 <h2>Scores and Subjects</h2>
         <div class="scoreSubject">
-            <div class="section pageslide">
+            <div class="section pageslide subContainer">
                 <label for="subjects">Enter Subjects</label>
                 <div>
                     <input type="text" name="subject" id="subjects" autocomplete="off">
@@ -31,7 +37,7 @@
                 </div>
             </div>  
 
-            <div class="pageslide">
+            <div class="pageslide subContainer">
                 <label for="scores" >Enter scores per Subject</label>
                 <div>
                     <input type="number" name="scores" id="scores">

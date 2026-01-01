@@ -23,11 +23,17 @@ const enterEditSubjects = document.querySelector('.editSubjects');
 
 //slide in animation in page load
 const pageslide = document.querySelectorAll('.pageslide');
+const subContainer = document.querySelectorAll('.subContainer');
 window.addEventListener('DOMContentLoaded', ()=>{
+    subContainer.forEach((subs, t)=>{
+        setTimeout(()=>{
+            subs.classList.add('subContaineranimate');
+        }, t*100)
+    })    
 
     pageslide.forEach((slide, t)=>{
         setTimeout(()=>{
-             slide.classList.add("animatepageslide");  
+            slide.classList.add("animatepageslide");  
         }, t*100)
     })
 })
@@ -44,10 +50,8 @@ divInput.append(clrbtn);
 
 
 const slideininfo = document.querySelector(".slideininfo");
-function addname(e){
-    if (e.type === "keydown" && e.key !== "enter") {
-        return;
-    }
+addName.addEventListener('click', ()=>{
+
     clrbtn.classList.remove('opacityOfbtn')
     const outputContainer = document.createElement('p');
     if (nameInput.value === '') {
@@ -72,7 +76,6 @@ function addname(e){
         slideininfo.classList.remove('popslideout');
         // sname.remove();
     }
-    sname.remove();
     
     clrbtn.addEventListener('click', () =>{
         outputContainer.remove();
@@ -82,79 +85,110 @@ function addname(e){
         scores.value = '';
     })
 
+    let i = 1;
     addAge.addEventListener('click', () =>{
         const studentAge = document.createElement('span');
         const studentAgeOutput = document.createElement('span')
         if (age.value === '') {
             alert("Please input Student's age");
         } else {
-            studentAge.append(age.value);
+            while ( i <= 1) {
+                studentAge.append(age.value);
+                studentAgeOutput.append(`Age : ${studentAge.textContent}`);
+                outputContainer.append(studentAgeOutput);
+
+                i++;
+            }
         } 
-        studentAgeOutput.append(`Age : ${studentAge.textContent}`);
-        outputContainer.append(studentAgeOutput);
         subjects.value = ''; 
         scores.value = '';
 
+        const table = document.createElement('table');
+        const thead = document.createElement('thead');
+        const th = document.createElement('th')
+        const tdSubject = document.createElement('td');
+        const tdScore = document.createElement('td');
+        tdSubject.textContent = "Subject";
+        tdScore.textContent = "Score";
+        th.append(tdSubject);
+        th.append(tdScore);
+        thead.append(th);
+        table.append(thead);
+        table.classList.add('tableUi');
+
+        outputContainer.append(table)
+
         const subjectScores = {
         }
-        addSubject.addEventListener('click', () =>{
+        const addrow = document.createElement('button')
+        addrow.classList.add('add');
+        addrow.append('Add More');
+        addrow.classList.add('editSubjects');
 
-            const scoredata = document.createElement('p');
-            scoredata.classList.add('scoredata');
-            if (subjects.value === '') {
-                alert('please Enter subject ')
-            } else {
-                const divsubject = document.createElement('div');
-                divsubject.classList.add('inputeditsubject');
-                const removeScore = document.createElement('button');
-                removeScore.append('-');
-                removeScore.classList.add('editSubjects');
-                const studentSubject = document.createElement('span');
-                studentSubject.append(subjects.value);
-                scoredata.append(studentSubject);
-                outputContainer.append(divsubject);
-                divsubject.append(`Subjects: ${studentSubject.textContent}`);
-                divsubject.append(removeScore);
-                removeScore.addEventListener('click', ()=>{
-                    divsubject.remove();
-                })
-            }
-        })
-
-        const arrayOfScores = [];
-        const arrayOfSubjects = [];
-            counter = 1;
-            addScore.addEventListener('click', () => { 
-                const divscore = document.createElement('div');
-                divscore.classList.add('inputeditsubject')
-                const removeScore = document.createElement('button');
-                removeScore.append('-');
-                removeScore.classList.add('editSubjects');
-                arrayOfScores.push(scores.value);
-                arrayOfSubjects.push(subjects.value);
-                outputContainer.append(divscore);
-                divscore.append(`${counter}.${subjects.value}'s score = ${scores.value}%`);
-                
-                divscore.append(removeScore);
-                divscore.classList.add('border');
-                console.log(arrayOfScores);
-                subjectScores[subjects.value] = scores.value;
-                student.subjectScores = subjectScores;
-
-                removeScore.addEventListener('click', ()=>{
-                    divscore.remove();
-                    counter--;
-                })
-                counter++;
-
-                nameInput.value = '';
-                age.value = '';
-                subjects.value = '';
-                scores.value = '';
-
+        const tr = document.createElement('tr');
+        thead.append(tr);
+        
+        
+            addSubject.addEventListener('click', () =>{
+                const scoredata = document.createElement('p');
+                scoredata.classList.add('scoredata');
+                if (subjects.value === '') {
+                    alert('please Enter subject ')
+                } else {
+                    const tdsubject = document.createElement('td');
+                    tdsubject.classList.add('inputeditsubject');
+                    const removeScore = document.createElement('button');
+                    removeScore.append('-');
+                    removeScore.classList.add('editSubjects');
+                    const studentSubject = document.createElement('span');
+                    studentSubject.append(subjects.value);
+                    scoredata.append(studentSubject);
+                    tdsubject.append(`${studentSubject.textContent}`);
+                    tdsubject.append(removeScore);
+                    tr.append(tdsubject);
+                    // trnew.append(tdSubject);
+                    removeScore.addEventListener('click', ()=>{
+                        tdsubject.remove();
+                    })
+                }
             })
 
+                const arrayOfScores = [];
+                const arrayOfSubjects = [];
+                counter = 1;
+                addScore.addEventListener('click', () => { 
+                    const tdscore = document.createElement('td');
+                    tdscore.classList.add('inputeditsubject')
+                    const removeScore = document.createElement('button');
+                    removeScore.append('-');
+                    removeScore.classList.add('editSubjects');
+                    arrayOfScores.push(scores.value);
+                    arrayOfSubjects.push(subjects.value);
+                    tr.append(tdscore);
+                    // trnew.append(tdscore)
+                    tdscore.append(`${scores.value}%`);
+                    
+                    tdscore.append(removeScore);
+                    console.log(arrayOfScores);
+                    subjectScores[subjects.value] = scores.value;
+                    student.subjectScores = subjectScores;
 
+                    removeScore.addEventListener('click', ()=>{
+                        tdscore.remove();
+                        counter--;
+                    })
+                    counter++;
+
+                    nameInput.value = '';
+                    age.value = '';
+                    subjects.value = '';
+                    scores.value = '';
+                   
+                    
+                    
+                })
+
+                console.log(arrayOfScores);
                 average.addEventListener('click', ()=>{
                     const averageoutput = document.createElement('p')
                     const solve = () =>{
@@ -167,7 +201,8 @@ function addname(e){
                 })
 
                 console.log(subjectScores);
-                console.log(arrayOfScores)
+        // })
+                
 
         const student = new mainObject(nameInput.value, age.value);
         console.log(student);
@@ -175,10 +210,11 @@ function addname(e){
         editSubjects.append('Edit Subjects');
         editSubjects.classList.add('editSubjects');
         enterpop.classList.add('add');
-
+        
+        outputContainer.append(addrow);
 
         editSubjects.addEventListener('click', ()=>{
-            popupContainer.classList.add('popupContainer')
+            popupContainer.classList.add('popupContainer');
             popupremove.classList.add('popremove');
             popup.classList.add('popup');
             popup.style.visibility = 'visible';
@@ -232,5 +268,6 @@ function addname(e){
         outputContainer.append(editSubjects);
     })
 }
-addName.addEventListener('keydown', addname);
-addName.addEventListener('click', addname);
+
+)
+    
