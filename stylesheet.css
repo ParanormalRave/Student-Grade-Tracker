@@ -107,7 +107,6 @@ input {
     color: var(--fontColor);
     border: 0;
     border-bottom: 1px solid var(--fontColor);
-    border-radius: 5px;
     padding-left: 1rem;
     width: 70vw;
     transition: 0.3s ease;
@@ -129,7 +128,7 @@ input {
 input:focus {
     box-shadow: 0 0 6px rgba(0, 191, 255, 0.2);
     outline: none;
-    border-color: var(--border);
+    border: none;
 }
 
 .add {
@@ -198,9 +197,7 @@ input:focus {
     width: 70dvw;
     height: 70dvh;
     max-height: 100dvh;
-    /* border: 1px solid var(---fontColor2); */
     border-radius: 10px;
-    /* display: flex; */
     flex-wrap: nowrap;
 }
 
@@ -214,7 +211,6 @@ input:focus {
 
 .tableUi tr{
     display: flex;
-
     height: 5%;
 }
 
@@ -222,6 +218,8 @@ input:focus {
     padding: 1rem;
     width: 100%;
     border: 1px solid var(---fontColor2);
+    display: flex;
+    align-items: center;
 }
 
 .opacityOfbtn{
@@ -243,12 +241,11 @@ input:focus {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    
 }
 
 #popup{
     visibility: hidden;
-    height: 20vh;
+    height: 20dvh;
 }
 
 .popup{
@@ -257,13 +254,15 @@ input:focus {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    padding: 15rem;
+    padding: 10rem;
+    margin: 1rem;
     display: flex;
     justify-content: center;
     flex-direction: column;
     animation: scale 1s ease;
     background-color: #000000;
-    gap: 1em;   
+    gap: 2em;
+    border-radius: 5px;
 }
 
 @keyframes scale {
@@ -273,13 +272,17 @@ input:focus {
 
 .inputeditsubject{
     display: flex;
-    justify-content: space-evenly;
-    align-self: flex-start;
-    gap: 1rem;
+    justify-content: space-between;
+}
+
+.inputeditsubject input{
+    width: 25vw;
 }
 
 .inputeditsubject button{
     border-radius: 5px;
+    padding: 0.5rem;
+    background-color: var(---fontColor2);
 }
 
 .popremove{
@@ -292,7 +295,7 @@ input:focus {
     height: fit-content;
     font-size: 2rem;
     width: fit-content;
-    padding: 0.5rem 1rem;
+    padding: 0.2rem 0.5rem;
     border: 0;
     transition: 1s ease;
     font-weight: 100;
@@ -450,6 +453,16 @@ input:focus {
     }
 
     .slideininfo{
+        font-size: 0.7rem;
+    }
+    
+    .popup{
+        border-radius: 10px;
+        width: 50dvw;
+        padding: 1rem;
+    }
+
+    .enterpop{
         font-size: 0.7rem;
     }
 }

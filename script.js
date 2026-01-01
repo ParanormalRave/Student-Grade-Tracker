@@ -10,7 +10,7 @@ const divInput = document.querySelector('.inputs');
 const average = document.querySelector('#average');
 const popupContainer = document.querySelector('#popupContainer');
 const popupremove = document.querySelector('#popupremove');
-const enterpop = document.querySelector('#existpopup');
+const enterpop = document.querySelector('#exitpopup');
 const popup = document.querySelector('#popup');
 const popupinput = document.querySelector('.popupcontent');
 const editsubscocontainer = document.querySelector('#editsubscocontainer');
@@ -96,7 +96,6 @@ addName.addEventListener('click', ()=>{
                 studentAge.append(age.value);
                 studentAgeOutput.append(`Age : ${studentAge.textContent}`);
                 outputContainer.append(studentAgeOutput);
-
                 i++;
             }
         } 
@@ -115,7 +114,6 @@ addName.addEventListener('click', ()=>{
         thead.append(th);
         table.append(thead);
         table.classList.add('tableUi');
-
         outputContainer.append(table)
 
         const subjectScores = {
@@ -128,7 +126,6 @@ addName.addEventListener('click', ()=>{
         const tr = document.createElement('tr');
         thead.append(tr);
         
-        
             addSubject.addEventListener('click', () =>{
                 const scoredata = document.createElement('p');
                 scoredata.classList.add('scoredata');
@@ -137,45 +134,84 @@ addName.addEventListener('click', ()=>{
                 } else {
                     const tdsubject = document.createElement('td');
                     tdsubject.classList.add('inputeditsubject');
-                    const removeScore = document.createElement('button');
-                    removeScore.append('-');
-                    removeScore.classList.add('editSubjects');
+                    const editScore = document.createElement('button');
+                    editScore.append('-');
+                    editScore.classList.add('editSubjects');
                     const studentSubject = document.createElement('span');
                     studentSubject.append(subjects.value);
                     scoredata.append(studentSubject);
                     tdsubject.append(`${studentSubject.textContent}`);
-                    tdsubject.append(removeScore);
+                    tdsubject.append(editScore);
                     tr.append(tdsubject);
-                    // trnew.append(tdSubject);
-                    removeScore.addEventListener('click', ()=>{
-                        tdsubject.remove();
+                    editScore.addEventListener('click', ()=>{
+                        popupContainer.classList.add('popupContainer');
+                        popupremove.classList.add('popremove');
+                        popup.classList.add('popup');
+                        popup.style.visibility = 'visible';
+                        popupinput.value = studentSubject.textContent;
+
+                        popupremove.addEventListener('click', ()=>{
+                            popupContainer.classList.remove('popupContainer')
+                            popupremove.classList.remove('popremove');
+                            popup.classList.remove('popup');
+                            popup.style.visibility = 'hidden';
+                        });
+
+                        enterpop.addEventListener('click', ()=>{
+                            tdsubject.innerHTML = '';
+                            tdsubject.append(popupinput.value);
+                            tdsubject.append(editScore);
+                            popupContainer.classList.remove('popupContainer')
+                            popupremove.classList.remove('popremove');
+                            popup.classList.remove('popup');
+                            popup.style.visibility = 'hidden';
+                        })    
                     })
                 }
             })
 
                 const arrayOfScores = [];
                 const arrayOfSubjects = [];
-                counter = 1;
                 addScore.addEventListener('click', () => { 
                     const tdscore = document.createElement('td');
                     tdscore.classList.add('inputeditsubject')
-                    const removeScore = document.createElement('button');
-                    removeScore.append('-');
-                    removeScore.classList.add('editSubjects');
+                    const editScore = document.createElement('button');
+                    editScore.append('-');
+                    editScore.classList.add('editSubjects');
                     arrayOfScores.push(scores.value);
                     arrayOfSubjects.push(subjects.value);
                     tr.append(tdscore);
-                    // trnew.append(tdscore)
                     tdscore.append(`${scores.value}%`);
-                    
-                    tdscore.append(removeScore);
+                    tdscore.append(editScore);
                     console.log(arrayOfScores);
                     subjectScores[subjects.value] = scores.value;
                     student.subjectScores = subjectScores;
 
-                    removeScore.addEventListener('click', ()=>{
-                        tdscore.remove();
-                        counter--;
+                    editScore.addEventListener('click', ()=>{
+                        popupContainer.classList.add('popupContainer');
+                        popupremove.classList.add('popremove');
+                        popup.classList.add('popup');
+                        popup.style.visibility = 'visible';
+                        popupinput.value = scores.value;
+
+                        popupremove.addEventListener('click', ()=>{
+                            popupContainer.classList.remove('popupContainer')
+                            popupremove.classList.remove('popremove');
+                            popup.classList.remove('popup');
+                            popup.style.visibility = 'hidden';
+                        });
+
+                        enterpop.addEventListener('click', ()=>{
+                            tdscore.innerHTML = '';
+                            tdscore.append(`${popupinput.value}`);
+                            tdscore.append(editScore);
+                            tdscore.append('%')
+                            popupContainer.classList.remove('popupContainer')
+                            popupremove.classList.remove('popremove');
+                            popup.classList.remove('popup');
+                            popup.style.visibility = 'hidden';
+                        })    
+
                     })
                     counter++;
 
@@ -183,9 +219,6 @@ addName.addEventListener('click', ()=>{
                     age.value = '';
                     subjects.value = '';
                     scores.value = '';
-                   
-                    
-                    
                 })
 
                 console.log(arrayOfScores);
@@ -210,52 +243,39 @@ addName.addEventListener('click', ()=>{
         editSubjects.append('Edit Subjects');
         editSubjects.classList.add('editSubjects');
         enterpop.classList.add('add');
-        
         outputContainer.append(addrow);
 
-        editSubjects.addEventListener('click', ()=>{
-            popupContainer.classList.add('popupContainer');
-            popupremove.classList.add('popremove');
-            popup.classList.add('popup');
-            popup.style.visibility = 'visible';
-        });
-
-        popupremove.addEventListener('click', ()=>{
-            popupContainer.classList.remove('popupContainer')
-            popupremove.classList.remove('popremove');
-            popup.classList.remove('popup');
-            popup.style.visibility = 'hidden';
-        });
         
-        enterpop.addEventListener('click', ()=>{
-            const v = popupinput.value--;
-            console.log(v);
-            const editsubject = Object.keys(subjectScores);
-            const editscores = Object.values(subjectScores);
-            if(popupinput.value !== '' && popupinput.value <= editsubject.length){
-                popupContainer.classList.remove('popupContainer')
-                popupremove.classList.remove('popremove');
-                popup.classList.remove('popup');
-                popup.style.visibility = 'hidden';
-                editsubscocontainer.classList.add('popupContainer');
-                editsubsco.classList.add('popup');
-                editsubsco.style.visibility = 'visible';
-                editsubremove.classList.add('popremove');
-                console.log(popupinput);
-                editsubjectinput.value = editsubject[v];
-                editscoreinput.value = editscores[v];
 
-            }else{
-                alert('Please input a number within the range of the listed subject');
-            }
-        })
+        // popupremove.addEventListener('click', ()=>{
+        //     popupContainer.classList.remove('popupContainer')
+        //     popupremove.classList.remove('popremove');
+        //     popup.classList.remove('popup');
+        //     popup.style.visibility = 'hidden';
+        // });
+        
+        // enterpop.addEventListener('click', ()=>{
+        //     const v = popupinput.value--;
+        //     console.log(v);
+        //     const editsubject = Object.keys(subjectScores);
+        //     const editscores = Object.values(subjectScores);
+        //     if(popupinput.value !== '' && popupinput.value <= editsubject.length){
+        //         popupContainer.classList.remove('popupContainer')
+        //         popupremove.classList.remove('popremove');
+        //         popup.classList.remove('popup');
+        //         popup.style.visibility = 'hidden';
+        //         editsubscocontainer.classList.add('popupContainer');
+        //         editsubsco.classList.add('popup');
+        //         editsubsco.style.visibility = 'visible';
+        //         editsubremove.classList.add('popremove');
+        //         console.log(popupinput);
+        //         editsubjectinput.value = editsubject[v];
+        //         editscoreinput.value = editscores[v];
+        //     }else{
+        //         alert('Please input a number within the range of the listed subject');
+        //     }
+        // })
 
-        editsubremove.addEventListener('click', () =>{
-            editsubscocontainer.classList.remove('popupContainer');
-            editsubsco.classList.remove('popup');
-            editsubsco.style.visibility = 'hidden';
-            editsubremove.classList.remove('popremove');
-        });
 
         enterEditSubjects.addEventListener('click', () =>{
             editsubscocontainer.classList.remove('popupContainer');
