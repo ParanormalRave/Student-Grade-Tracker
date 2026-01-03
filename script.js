@@ -19,6 +19,7 @@ const editsubremove = document.querySelector('#editsubremove');
 const editsubjectinput = document.querySelector('#editsub');
 const editscoreinput = document.querySelector('#editsco');
 const enterEditSubjects = document.querySelector('.editSubjects');
+const popscoreinput = document.querySelector("#popscoreinput");
 
 
 //slide in animation in page load
@@ -148,6 +149,7 @@ addName.addEventListener('click', ()=>{
                         popupremove.classList.add('popremove');
                         popup.classList.add('popup');
                         popup.style.visibility = 'visible';
+                        popscoreinput.style.display = "none";
                         popupinput.value = studentSubject.textContent;
 
                         popupremove.addEventListener('click', ()=>{
@@ -192,7 +194,9 @@ addName.addEventListener('click', ()=>{
                         popupremove.classList.add('popremove');
                         popup.classList.add('popup');
                         popup.style.visibility = 'visible';
-                        popupinput.value = scores.value;
+                        popscoreinput.style.display = "block";
+                        popupinput.style.display = "none";
+                        popscoreinput.value = scores.value;
 
                         popupremove.addEventListener('click', ()=>{
                             popupContainer.classList.remove('popupContainer')
@@ -203,9 +207,9 @@ addName.addEventListener('click', ()=>{
 
                         enterpop.addEventListener('click', ()=>{
                             tdscore.innerHTML = '';
-                            tdscore.append(`${popupinput.value}`);
-                            tdscore.append(editScore);
+                            tdscore.append(popscoreinput.value);
                             tdscore.append('%')
+                            tdscore.append(editScore);
                             popupContainer.classList.remove('popupContainer')
                             popupremove.classList.remove('popremove');
                             popup.classList.remove('popup');
@@ -241,6 +245,7 @@ addName.addEventListener('click', ()=>{
         console.log(student);
         const editSubjects = document.createElement('button');
         editSubjects.append('Edit Subjects');
+        editSubjects.style.fontSize = "1rem"
         editSubjects.classList.add('editSubjects');
         enterpop.classList.add('add');
         outputContainer.append(addrow);
