@@ -124,131 +124,138 @@ addName.addEventListener('click', ()=>{
         addrow.append('Add More');
         addrow.classList.add('editSubjects');
 
-        const tr = document.createElement('tr');
-        thead.append(tr);
-        
-            addSubject.addEventListener('click', () =>{
-                const scoredata = document.createElement('p');
-                scoredata.classList.add('scoredata');
-                if (subjects.value === '') {
-                    alert('please Enter subject ')
-                } else {
-                    const tdsubject = document.createElement('td');
-                    tdsubject.classList.add('inputeditsubject');
-                    const editScore = document.createElement('button');
-                    editScore.append('-');
-                    editScore.classList.add('editSubjects');
-                    const studentSubject = document.createElement('span');
-                    studentSubject.append(subjects.value);
-                    scoredata.append(studentSubject);
-                    tdsubject.append(`${studentSubject.textContent}`);
-                    tdsubject.append(editScore);
-                    tr.append(tdsubject);
-                    editScore.addEventListener('click', ()=>{
-                        popupContainer.classList.add('popupContainer');
-                        popupremove.classList.add('popremove');
-                        popup.classList.add('popup');
-                        popup.style.visibility = 'visible';
-                        popscoreinput.style.display = "none";
-                        popupinput.value = studentSubject.textContent;
+        tableFunction()
+        function tableFunction(){
+            const tr = document.createElement('tr');
+            thead.append(tr);
+            
+                addSubject.addEventListener('click', () =>{
+                    const scoredata = document.createElement('p');
+                    scoredata.classList.add('scoredata');
+                    if (subjects.value === '') {
+                        alert('please Enter subject ')
+                    } else {
+                        const tdsubject = document.createElement('td');
+                        tdsubject.classList.add('inputeditsubject');
+                        const editScore = document.createElement('button');
+                        editScore.append('-');
+                        editScore.classList.add('editSubjects');
+                        const studentSubject = document.createElement('span');
+                        studentSubject.append(subjects.value);
+                        scoredata.append(studentSubject);
+                        tdsubject.append(`${studentSubject.textContent}`);
+                        tdsubject.append(editScore);
+                        tr.append(tdsubject);
+                        editScore.addEventListener('click', ()=>{
+                            popupContainer.classList.add('popupContainer');
+                            popupremove.classList.add('popremove');
+                            popup.classList.add('popup');
+                            popup.style.visibility = 'visible';
+                            popscoreinput.style.display = "none";
+                            popupinput.value = studentSubject.textContent;
 
-                        popupremove.addEventListener('click', ()=>{
-                            popupContainer.classList.remove('popupContainer')
-                            popupremove.classList.remove('popremove');
-                            popup.classList.remove('popup');
-                            popup.style.visibility = 'hidden';
-                        });
+                            popupremove.addEventListener('click', ()=>{
+                                popupContainer.classList.remove('popupContainer')
+                                popupremove.classList.remove('popremove');
+                                popup.classList.remove('popup');
+                                popup.style.visibility = 'hidden';
+                            });
 
-                        enterpop.addEventListener('click', ()=>{
-                            tdsubject.innerHTML = '';
-                            tdsubject.append(popupinput.value);
-                            tdsubject.append(editScore);
-                            popupContainer.classList.remove('popupContainer')
-                            popupremove.classList.remove('popremove');
-                            popup.classList.remove('popup');
-                            popup.style.visibility = 'hidden';
-                        })    
-                    })
-                }
-            })
-
-                const arrayOfScores = [];
-                const arrayOfSubjects = [];
-                addScore.addEventListener('click', () => { 
-                    const tdscore = document.createElement('td');
-                    tdscore.classList.add('inputeditsubject')
-                    const editScore = document.createElement('button');
-                    editScore.append('-');
-                    editScore.classList.add('editSubjects');
-                    arrayOfScores.push(scores.value);
-                    arrayOfSubjects.push(subjects.value);
-                    tr.append(tdscore);
-                    tdscore.append(`${scores.value}%`);
-                    tdscore.append(editScore);
-                    console.log(arrayOfScores);
-                    subjectScores[subjects.value] = scores.value;
-                    student.subjectScores = subjectScores;
-
-                    editScore.addEventListener('click', ()=>{
-                        popupContainer.classList.add('popupContainer');
-                        popupremove.classList.add('popremove');
-                        popup.classList.add('popup');
-                        popup.style.visibility = 'visible';
-                        popscoreinput.style.display = "block";
-                        popupinput.style.display = "none";
-                        popscoreinput.value = scores.value;
-
-                        popupremove.addEventListener('click', ()=>{
-                            popupContainer.classList.remove('popupContainer')
-                            popupremove.classList.remove('popremove');
-                            popup.classList.remove('popup');
-                            popup.style.visibility = 'hidden';
-                        });
-
-                        enterpop.addEventListener('click', ()=>{
-                            tdscore.innerHTML = '';
-                            tdscore.append(popscoreinput.value);
-                            tdscore.append('%')
-                            tdscore.append(editScore);
-                            popupContainer.classList.remove('popupContainer')
-                            popupremove.classList.remove('popremove');
-                            popup.classList.remove('popup');
-                            popup.style.visibility = 'hidden';
-                        })    
-
-                    })
-                    counter++;
-
-                    nameInput.value = '';
-                    age.value = '';
-                    subjects.value = '';
-                    scores.value = '';
-                })
-
-                console.log(arrayOfScores);
-                average.addEventListener('click', ()=>{
-                    const averageoutput = document.createElement('p')
-                    const solve = () =>{
-                        const sum = arrayOfScores.map(Number).reduce((a, b) => a + b,0);
-                        return sum/arrayOfScores.length;
+                            enterpop.addEventListener('click', ()=>{
+                                tdsubject.innerHTML = '';
+                                tdsubject.append(popupinput.value);
+                                tdsubject.append(editScore);
+                                popupContainer.classList.remove('popupContainer')
+                                popupremove.classList.remove('popremove');
+                                popup.classList.remove('popup');
+                                popup.style.visibility = 'hidden';
+                            })    
+                        })
                     }
-                    console.log(solve());
-                    averageoutput.append(`Current Average: ${solve()}`)
-                    outputContainer.append(averageoutput);
                 })
 
-                console.log(subjectScores);
-        // })
-                
+                    const arrayOfScores = [];
+                    const arrayOfSubjects = [];
+                    addScore.addEventListener('click', () => { 
+                        const tdscore = document.createElement('td');
+                        tdscore.classList.add('inputeditsubject')
+                        const editScore = document.createElement('button');
+                        editScore.append('-');
+                        editScore.classList.add('editSubjects');
+                        arrayOfScores.push(scores.value);
+                        arrayOfSubjects.push(subjects.value);
+                        tr.append(tdscore);
+                        tdscore.append(`${scores.value}%`);
+                        tdscore.append(editScore);
+                        console.log(arrayOfScores);
+                        subjectScores[subjects.value] = scores.value;
+                        student.subjectScores = subjectScores;
+
+                        editScore.addEventListener('click', ()=>{
+                            popupContainer.classList.add('popupContainer');
+                            popupremove.classList.add('popremove');
+                            popup.classList.add('popup');
+                            popup.style.visibility = 'visible';
+                            popscoreinput.style.display = "block";
+                            popupinput.style.display = "none";
+                            popscoreinput.value = scores.value;
+
+                            popupremove.addEventListener('click', ()=>{
+                                popupContainer.classList.remove('popupContainer')
+                                popupremove.classList.remove('popremove');
+                                popup.classList.remove('popup');
+                                popup.style.visibility = 'hidden';
+                            });
+
+                            enterpop.addEventListener('click', ()=>{
+                                tdscore.innerHTML = '';
+                                tdscore.append(popscoreinput.value);
+                                tdscore.append('%')
+                                tdscore.append(editScore);
+                                popupContainer.classList.remove('popupContainer')
+                                popupremove.classList.remove('popremove');
+                                popup.classList.remove('popup');
+                                popup.style.visibility = 'hidden';
+                            })    
+
+                        })
+                        // counter++;
+
+                        nameInput.value = '';
+                        age.value = '';
+                        subjects.value = '';
+                        scores.value = '';
+                    })
+
+                    console.log(arrayOfScores);
+                    average.addEventListener('click', ()=>{
+                        const averageoutput = document.createElement('p')
+                        const solve = () =>{
+                            const sum = arrayOfScores.map(Number).reduce((a, b) => a + b,0);
+                            return sum/arrayOfScores.length;
+                        }
+                        console.log(solve());
+                        averageoutput.append(`Current Average: ${solve()}`)
+                        outputContainer.append(averageoutput);
+                    })
+
+                    console.log(subjectScores);
+
+            
+        }
 
         const student = new mainObject(nameInput.value, age.value);
-        console.log(student);
-        const editSubjects = document.createElement('button');
-        editSubjects.append('Edit Subjects');
-        editSubjects.style.fontSize = "1rem"
-        editSubjects.classList.add('editSubjects');
-        enterpop.classList.add('add');
-        outputContainer.append(addrow);
+            console.log(student);
+            const editSubjects = document.createElement('button');
+            editSubjects.append('Edit Subjects');
+            editSubjects.style.fontSize = "1rem"
+            editSubjects.classList.add('editSubjects');
+            enterpop.classList.add('add');
+            outputContainer.append(addrow);
+
+        addrow.addEventListener("click", ()=>{
+            tableFunction();
+        })
 
         
 
