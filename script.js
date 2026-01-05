@@ -85,6 +85,13 @@ addName.addEventListener('click', ()=>{
         subjects.value = '';
         scores.value = '';
     })
+    const print = document.createElement('button');
+    print.classList.add('add');
+    print.insertAdjacentHTML('afterbegin', `<i class="fa-solid fa-print"></i>`)
+    print.append('print')
+    print.addEventListener("click", ()=>{
+         window.print();
+    })
 
     let i = 1;
     addAge.addEventListener('click', () =>{
@@ -121,13 +128,18 @@ addName.addEventListener('click', ()=>{
         }
         const addrow = document.createElement('button')
         addrow.classList.add('add');
+        addrow.insertAdjacentHTML("afterbegin", `<i class="fa-solid fa-circle-plus"></i>`)
         addrow.append('Add More');
-        addrow.classList.add('editSubjects');
+        addrow.classList.add('add');
+        addrow.classList.add("noprint")
+    
 
-        tableFunction()
+
+        tableFunction();
         function tableFunction(){
             const tr = document.createElement('tr');
             thead.append(tr);
+
             
                 addSubject.addEventListener('click', () =>{
                     const scoredata = document.createElement('p');
@@ -138,8 +150,8 @@ addName.addEventListener('click', ()=>{
                         const tdsubject = document.createElement('td');
                         tdsubject.classList.add('inputeditsubject');
                         const editScore = document.createElement('button');
-                        editScore.append('-');
-                        editScore.classList.add('editSubjects');
+                        editScore.insertAdjacentHTML("afterbegin", `<i class="fa-solid fa-plus"></i>`);
+                        editScore.classList.add('add');
                         const studentSubject = document.createElement('span');
                         studentSubject.append(subjects.value);
                         scoredata.append(studentSubject);
@@ -180,8 +192,8 @@ addName.addEventListener('click', ()=>{
                         const tdscore = document.createElement('td');
                         tdscore.classList.add('inputeditsubject')
                         const editScore = document.createElement('button');
-                        editScore.append('-');
-                        editScore.classList.add('editSubjects');
+                        editScore.insertAdjacentHTML('afterbegin',`<i class="fa-solid fa-plus"></i>`);
+                        editScore.classList.add('add');
                         arrayOfScores.push(scores.value);
                         arrayOfSubjects.push(subjects.value);
                         tr.append(tdscore);
@@ -219,6 +231,8 @@ addName.addEventListener('click', ()=>{
                             })    
 
                         })
+                        
+                        outputContainer.append(print)
                         // counter++;
 
                         nameInput.value = '';
@@ -240,66 +254,17 @@ addName.addEventListener('click', ()=>{
                     })
 
                     console.log(subjectScores);
-
             
         }
 
         const student = new mainObject(nameInput.value, age.value);
             console.log(student);
-            const editSubjects = document.createElement('button');
-            editSubjects.append('Edit Subjects');
-            editSubjects.style.fontSize = "1rem"
-            editSubjects.classList.add('editSubjects');
-            enterpop.classList.add('add');
             outputContainer.append(addrow);
 
         addrow.addEventListener("click", ()=>{
             tableFunction();
         })
-
-        
-
-        // popupremove.addEventListener('click', ()=>{
-        //     popupContainer.classList.remove('popupContainer')
-        //     popupremove.classList.remove('popremove');
-        //     popup.classList.remove('popup');
-        //     popup.style.visibility = 'hidden';
-        // });
-        
-        // enterpop.addEventListener('click', ()=>{
-        //     const v = popupinput.value--;
-        //     console.log(v);
-        //     const editsubject = Object.keys(subjectScores);
-        //     const editscores = Object.values(subjectScores);
-        //     if(popupinput.value !== '' && popupinput.value <= editsubject.length){
-        //         popupContainer.classList.remove('popupContainer')
-        //         popupremove.classList.remove('popremove');
-        //         popup.classList.remove('popup');
-        //         popup.style.visibility = 'hidden';
-        //         editsubscocontainer.classList.add('popupContainer');
-        //         editsubsco.classList.add('popup');
-        //         editsubsco.style.visibility = 'visible';
-        //         editsubremove.classList.add('popremove');
-        //         console.log(popupinput);
-        //         editsubjectinput.value = editsubject[v];
-        //         editscoreinput.value = editscores[v];
-        //     }else{
-        //         alert('Please input a number within the range of the listed subject');
-        //     }
-        // })
-
-
-        enterEditSubjects.addEventListener('click', () =>{
-            editsubscocontainer.classList.remove('popupContainer');
-            editsubsco.classList.remove('popup');
-            editsubsco.style.visibility = 'hidden';
-            editsubremove.classList.remove('popremove');
-            alert(outputContainer.textContent);
-        })
-        
-        outputContainer.append(editSubjects);
+        // outputContainer.append(editSubjects);  
     })
-}
-
-)
+})
     
